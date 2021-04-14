@@ -1,4 +1,1 @@
-# ppdb
-# akademik
-# akademik
 # akademik
