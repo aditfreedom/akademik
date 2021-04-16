@@ -21,7 +21,7 @@
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
     <i class="fa fa-plus"></i> Tambah Data</button></p>
 
-    <table class="table table-hover" id="example">
+    <table class="table table-bordered table-stripped table-hover" id="example">
           <thead class="text-center">
             <tr>
               <th scope="col">NO</th>
@@ -69,7 +69,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form method="post" action="<?php echo base_url().'home/tambahkuota'; ?>">
+      <form method="post" action="<?php echo base_url().'home/tambahdosen'; ?>">
         <div class="form-group">
         <label for="">Nama Lengkap</label>
         <input type="text" name="nama_lengkap" class="form-control">
@@ -84,7 +84,10 @@
         </div>
         <div class="form-group">
         <label for="">Jenis Kelamin</label>
-        <input type="text" name="jenis_kelamin" class="form-control">
+            <select class="form-control" name="jenis_kelamin">
+            <option value="Laki-Laki">Laki-Laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
         </div>
         <div class="form-group">
         <label for="">Alamat</label><br>

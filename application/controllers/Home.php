@@ -35,32 +35,17 @@ class Home extends CI_Controller {
 		$this->load->model('M_akademik');
 		$sess_data = $this->session->userdata();
 		// $data['pensd'] = $this->M_akademik->tampilpensd()->result();
-		// $data['pensmp'] = $this->M_akademik->tampilpensmp()->result();
-		// $data['pensma'] = $this->M_akademik->tampilpensma()->result();
-		// $data['pindsd'] = $this->M_akademik->tampilpindsd()->result();
-		// $data['pindsmp'] = $this->M_akademik->tampilpindsmp()->result();
-		// $data['pindsma'] = $this->M_akademik->tampilpindsma()->result();
-		// $data['hitungsdformulir'] = $this->M_akademik->hitungsdformulir();
-		// $data['hitungsmpformulir'] = $this->M_akademik->hitungsmpformulir();
-		// $data['hitungsmaformulir'] = $this->M_akademik->hitungsmaformulir();
+		$data['tbl_dosen'] = $this->M_akademik->hitung_data_all('tbl_dosen');
+		$data['tbl_mahasiswa'] = $this->M_akademik->hitung_data_all('tbl_mahasiswa');
+		$data['tbl_kelas'] = $this->M_akademik->hitung_data_all('tbl_kelas');
+		$data['tbl_ruangan'] = $this->M_akademik->hitung_data_all('tbl_ruangan');
+		$data['tbl_matakuliah'] = $this->M_akademik->hitung_data_all('tbl_matakuliah');
+		$data['tbl_user'] = $this->M_akademik->hitung_data_all('tbl_user');
 
-		// $data['hitungpindsdformulir'] = $this->M_akademik->hitungpindsdformulir();
-		// $data['hitungpindsmpformulir'] = $this->M_akademik->hitungpindsmpformulir();
-		// $data['hitungpindsmaformulir'] = $this->M_akademik->hitungpindsmaformulir();
-
-		// $data['hitungpdlulus'] = $this->M_akademik->hitungpdlulus();
-		// $data['hitungpdtidaklulus'] = $this->M_akademik->hitungpdtidaklulus();
-
-		// $data['hitungpddaftarulang'] = $this->M_akademik->hitungpddaftarulang();
-		// $data['hitungpdtidakdaftarulang'] = $this->M_akademik->hitungpdtidakdaftarulang();
-
-		// $data['hitunguser'] = $this->M_akademik->hitunguser();
-		// $data['hitungformulir'] = $this->M_akademik->hitungformulir();
-		// $data['hitungformulirpindahan'] = $this->M_akademik->hitungformulirpindahan();
 
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
-		$this->load->view('dashboard');
+		$this->load->view('dashboard',$data);
 		$this->load->view('template/footer');
 
 
@@ -95,22 +80,27 @@ class Home extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	public function tambahkuota(){
-		$jenis           = $this->input->post('jenis');
-		$kuota          = $this->input->post('kuota');
-		$keterangan          = $this->input->post('keterangan');
+	public function tambahdosen(){
+		$nama_lengkap          = $this->input->post('nama_lengkap');
+		$nip			       = $this->input->post('nip');
+		$jabatan			   = $this->input->post('jabatan');
+		$jenis_kelamin		   = $this->input->post('jenis_kelamin');
+		$alamat				   = $this->input->post('alamat');
 
 
 	   
 		$data = array(
-			'jenis' => $jenis,
-			'kuota' => $kuota,
-			'keterangan' => $keterangan
+			'nama_lengkap' => $nama_lengkap,
+			'nip' => $nip,
+			'jabatan' => $jabatan,
+			'jenis_kelamin' => $jenis_kelamin,
+			'alamat' => $alamat
+
 
 		);
 	
-		$this->M_akademik->tambahkuota($data,'kuota');
-		redirect(base_url('home/kuota'));
+		$this->M_akademik->tambahdosen($data,'kuota');
+		redirect(base_url('home/dosen'));
 	}
 
 	public function hapuskuota($id){
@@ -119,37 +109,40 @@ class Home extends CI_Controller {
 		redirect(base_url('home/kuota'));
 	}
 
-	public function editkuota($id){
+	public function editdosen($id){
 		$sess_data = $this->session->userdata();
-		$id =    array ('id' => $id);
-		$data['kuota'] = $this->M_akademik->editkuota($id,'kuota')->result();
+		$id_dosen =    array ('id_dosen' => $id);
+		$data['datadosen'] = $this->M_akademik->editdosen($id,'tbl_dosen')->result();
 		$this->load->view('template/header');
-		$this->load->view('template/sidebar',$sess_data);
-		$this->load->view('editkuota',$data);
+		$this->load->view('template/sidebar');
+		$this->load->view('editdosen',$data);
 		$this->load->view('template/footer');
 	}
 
-	public function updatekuota(){
-		$id       = $this->input->post('id');
-		$jenis       = $this->input->post('jenis');
-		$kuota        = $this->input->post('kuota');
-		$keterangan        = $this->input->post('keterangan');
+	public function updatedosen(){
+		$id_dosen       = $this->input->post('id_dosen');
+		$nama_lengkap          = $this->input->post('nama_lengkap');
+		$nip			       = $this->input->post('nip');
+		$jabatan			   = $this->input->post('jabatan');
+		$jenis_kelamin		   = $this->input->post('jenis_kelamin');
+		$alamat				   = $this->input->post('alamat');
 
 	
 		$data = array(
-			'jenis' => $jenis,
-			'kuota' => $kuota,
-			'keterangan' => $keterangan
-
+			'nama_lengkap' => $nama_lengkap,
+			'nip' => $nip,
+			'jabatan' => $jabatan,
+			'jenis_kelamin' => $jenis_kelamin,
+			'alamat' => $alamat
 		);
 	
 		$where = array(
-			'id' => $id
+			'id_dosen' => $id_dosen
 		);
 	
-		$this->M_akademik->updatekuota($where,$data,'kuota');
+		$this->M_akademik->updatedosen($where,$data,'tbl_dosen');
 		$this->load->view('berhasil_ubah');
-		$this->load->view('kuota');
+		$this->load->view('dosen');
 	}
 
 	public function approve_formulir()

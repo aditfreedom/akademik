@@ -15,23 +15,24 @@ class M_akademik extends CI_Model{
 
      }
 
-    public function tambahkuota($data)
+    public function tambahdosen($data)
     {
-        $this->db->insert('kuota',$data);
+        $this->db->insert('tbl_dosen',$data);
     }
 
     public function hapuskuota($id)
     {   
         $this->db->delete('kuota',$id);  
     }
-    public function editkuota($id)
+    public function editdosen($id)
     {
-        return $this->db->get_where('kuota',$id);  
+        $query = $this->db->query("SELECT * from tbl_dosen where id_dosen=$id");
+        return $query;    
     }
 
-    public function updatekuota($where,$data)
+    public function updatedosen($where,$data)
     {   $this->db->where($where);
-        $this->db->update('kuota',$data); 
+        $this->db->update('tbl_dosen',$data); 
     }
 
     public function updatedatapengguna($where,$data)
@@ -90,10 +91,15 @@ class M_akademik extends CI_Model{
         return $query;
     }
 
-    public function tampilpensmp(){
-        $query = $this->db->query("SELECT kuota FROM kuota WHERE jenis='Peserta Didik Baru SMP' ");
-        return $query;
+    public function jumlahdosen(){
+        $result = $this->db->query("SELECT*FROM tbl_dosen");
+        return $result->num_rows();
     }
+
+    public function hitung_data_all($table){
+        $result = $this->db->get($table);
+        return $result->num_rows();
+   }
 
     public function tampilpensma(){
         $query = $this->db->query("SELECT kuota FROM kuota WHERE jenis='Peserta Didik Baru SMA' ");

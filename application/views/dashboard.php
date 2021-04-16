@@ -18,17 +18,15 @@
     <!-- /.content-header -->
     <div class="container">
     <section class="content">
+
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-        <div class="col-lg-4 col-4">
+          <div class="col-lg-6 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-info">
               <div class="inner">
-              <!-- <?php  
-	             foreach ($pensd as $data) : ?> -->
-                <h3>20</h3>
-                <!-- <?php endforeach ;?> -->
+                <h3><?php echo $tbl_dosen; ?></h3>
                 <p>Jumlah Dosen</p>
               </div>
               <div class="icon">
@@ -36,17 +34,13 @@
               </div>
             </div>
           </div>
-          <!-- ./col -->
 
-        <div class="col-lg-4 col-4">
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-              <!-- <?php  
-	             foreach ($pensmp as $data) : ?> -->
-                <h3>20</h3>
-                <!-- <?php endforeach ;?> -->
-
+                <h3><?php echo $tbl_mahasiswa ?><sup style="font-size: 20px"></sup></h3>
                 <p>Jumlah Mahasiswa</p>
               </div>
               <div class="icon">
@@ -54,50 +48,13 @@
               </div>
             </div>
           </div>
+
           <!-- ./col -->
-        <div class="col-lg-4 col-4">
+          <div class="col-lg-6 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-warning">
               <div class="inner">
-              <!-- <?php  
-	             foreach ($pensma as $data) : ?> -->
-                <h3>20</h3>
-                <!-- <?php endforeach ;?> -->
-
-
-                <p>Jumlah Mata Kuliah</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-book"></i>
-              </div>
-            </div>
-          </div>
-             <!-- ./col -->
-             <div class="col-lg-4 col-4">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-              <!-- <?php  
-	             foreach ($pindsd as $data) : ?> -->
-                <h3>20</h3>
-                <!-- <?php endforeach ;?> -->
-
-                <p>Jumlah Ruangan</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-building"></i>
-              </div>
-            </div>
-          </div>
-                    <!-- ./col -->
-        <div class="col-lg-4 col-4">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-              <!-- <?php  
-	             foreach ($pindsmp as $data) : ?> -->
-                <h3>20</h3>
-                <?php endforeach ;?>
+                <h3><?php echo $tbl_kelas?></h3>
 
                 <p>Jumlah Kelas</p>
               </div>
@@ -106,38 +63,62 @@
               </div>
             </div>
           </div>
-
-                       <!-- ./col -->
-        <div class="col-lg-4 col-4">
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-danger">
               <div class="inner">
-              <!-- <?php  
-	             foreach ($pindsma as $data) : ?> -->
-                <h3>20</h3>
-                <!-- <?php endforeach ;?> -->
+                <h3><?php echo $tbl_ruangan ?></h3>
 
-                <p>Total Pengguna</p>
+                <p>Jumlah Ruangan</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-building"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3><?php echo $tbl_matakuliah; ?></h3>
+                <p>Jumlah Mata Kuliah</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3><?php echo $tbl_user ?><sup style="font-size: 20px"></sup></h3>
+                <p>Jumlah Pengguna</p>
               </div>
               <div class="icon">
                 <i class="fa fa-database"></i>
               </div>
             </div>
-          </div>     
+          </div>
 
-        </div>
+         
           
           <!-- ./col -->
+        
+        
         </div>
         
         
     </section>
     
-    </div>
 </div>
-<!-- Button trigger modal -->
-
-
-
+</div>
 </div>
 

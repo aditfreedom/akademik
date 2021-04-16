@@ -1,7 +1,7 @@
 <script type="text/javascript">
 function jsFunction(){
 alert('Berhasil Ubah Data');
-window.location.href = "./kuota";
+window.location.href = "./dosen";
 }
 </script>
 <?php
