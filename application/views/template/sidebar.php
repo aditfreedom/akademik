@@ -47,7 +47,7 @@
           </li>
 
           <li class="nav-item ">
-            <a href="<?=base_url('home/approve_formulir');?>" class="nav-link">
+            <a href="<?=base_url('home/mahasiswa');?>" class="nav-link">
               <i class="nav-icon fa fa-user-alt"></i>
               <p>
                 Mahasiswa

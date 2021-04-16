@@ -34,7 +34,11 @@
         </div>
         <div class="form-group">
         <label for="">Jenis Kelamin</label>
-        <input type="text" name="jenis_kelamin" class="form-control" value="<?php echo $data->jenis_kelamin;?>">
+            <select class="form-control" name="jenis_kelamin">
+            <option selected hidden value="<?php echo $data->jenis_kelamin;?>"><?php echo $data->jenis_kelamin;?></option>
+            <option value="Laki-Laki">Laki-Laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
         </div>
         <div class="form-group">
         <label for="">Alamat</label><br>

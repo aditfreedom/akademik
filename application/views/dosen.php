@@ -44,8 +44,9 @@
             <td><?php echo $data->jenis_kelamin;?></td>
             <td><?php echo $data->alamat;?></td>
             <td><?php echo anchor('home/editdosen/'.$data->id_dosen,'<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>')?> 
-            <?php echo anchor('home/hapusdosen/'.$data->id_dosen,'<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?> </td>	
-		</tr>
+            <?php echo anchor('home/hapusdosen/'.$data->id_dosen,'<div  onclick="return kotak_hapus()" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?> </td>	
+            
+    </tr>
 		<?php $i++; ?>
 	<?php endforeach ;?>
           </tbody>
@@ -101,3 +102,8 @@
 </div>
 </div>
 
+<script type="text/javascript">
+function kotak_hapus() {
+  return confirm('Yakin Menghapus Data?');
+}
+</script>

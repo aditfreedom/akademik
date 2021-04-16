@@ -20,19 +20,41 @@ class M_akademik extends CI_Model{
         $this->db->insert('tbl_dosen',$data);
     }
 
-    public function hapuskuota($id)
-    {   
-        $this->db->delete('kuota',$id);  
+    public function tambahmahasiswa($data)
+    {
+        $this->db->insert('tbl_mahasiswa',$data);
     }
+
+    public function hapusdosen($id)
+    {   
+        $this->db->delete('tbl_dosen',$id);  
+    }
+
+    public function hapusmahasiswa($id)
+    {   
+        $this->db->delete('tbl_mahasiswa',$id);  
+    }
+
     public function editdosen($id)
     {
         $query = $this->db->query("SELECT * from tbl_dosen where id_dosen=$id");
         return $query;    
     }
 
+    public function editmahasiswa($id)
+    {
+        $query = $this->db->query("SELECT * from tbl_mahasiswa where id_detail_user=$id");
+        return $query;    
+    }
+
     public function updatedosen($where,$data)
     {   $this->db->where($where);
         $this->db->update('tbl_dosen',$data); 
+    }
+
+    public function updatemahasiswa($where,$data)
+    {   $this->db->where($where);
+        $this->db->update('tbl_mahasiswa',$data); 
     }
 
     public function updatedatapengguna($where,$data)
@@ -50,8 +72,8 @@ class M_akademik extends CI_Model{
         $this->db->insert('pengguna', $data);
     }
 
-    public function tampil_approval(){
-        $query = $this->db->query("SELECT * from pengguna where approve_formulir = 'Antrian' OR approve_formulir = 'Diterima' OR approve_formulir = 'Ditolak'");
+    public function tampil_mahasiswa(){
+        $query = $this->db->query("SELECT * from tbl_mahasiswa");
         return $query;
     }
 

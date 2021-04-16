@@ -99,14 +99,14 @@ class Home extends CI_Controller {
 
 		);
 	
-		$this->M_akademik->tambahdosen($data,'kuota');
+		$this->M_akademik->tambahdosen($data,'tbl_dosen');
 		redirect(base_url('home/dosen'));
 	}
 
-	public function hapuskuota($id){
-		$id =    array ('id' => $id);
-		$this->M_akademik->hapuskuota($id,'kuota');
-		redirect(base_url('home/kuota'));
+	public function hapusdosen($id){
+		$id =    array ('id_dosen' => $id);
+		$this->M_akademik->hapusdosen($id,'tbl_dosen');
+		redirect(base_url('home/dosen'));
 	}
 
 	public function editdosen($id){
@@ -116,6 +116,16 @@ class Home extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('editdosen',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function editmahasiswa($id){
+		$sess_data = $this->session->userdata();
+		$id_dosen =    array ('id_detail_user' => $id);
+		$data['datamahasiswa'] = $this->M_akademik->editmahasiswa($id,'tbl_mahasiswa')->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('editmahasiswa',$data);
 		$this->load->view('template/footer');
 	}
 
@@ -145,14 +155,69 @@ class Home extends CI_Controller {
 		$this->load->view('dosen');
 	}
 
-	public function approve_formulir()
+	public function mahasiswa()
 	{
-		$data['formulir'] = $this->M_akademik->tampil_approval()->result();
+		$data['mahasiswa'] = $this->M_akademik->tampil_mahasiswa()->result();
 		$sess_data = $this->session->userdata();
 		$this->load->view('template/header');
-		$this->load->view('template/sidebar',$sess_data);
-		$this->load->view('approve_formulir',$data);
+		$this->load->view('template/sidebar');
+		$this->load->view('mahasiswa',$data);
 		$this->load->view('template/footer');
+	}
+
+	public function tambahmahasiswa(){
+		$nama_lengkap          = $this->input->post('nama_lengkap');
+		$nim			       = $this->input->post('nim');
+		$alamat			   	   = $this->input->post('alamat');
+		$tempat_lahir		   = $this->input->post('tempat_lahir');
+		$tanggal_lahir		   = $this->input->post('tanggal_lahir');
+		$jenis_kelamin		   = $this->input->post('jenis_kelamin');
+
+	   
+		$data = array(
+			'nama_lengkap' => $nama_lengkap,
+			'nim' => $nim,
+			'alamat' => $alamat,
+			'tempat_lahir' => $tempat_lahir,
+			'tanggal_lahir' => $tanggal_lahir,
+			'jenis_kelamin' => $jenis_kelamin
+		);
+	
+		$this->M_akademik->tambahmahasiswa($data,'tbl_mahasiswa');
+		redirect(base_url('home/mahasiswa'));
+	}
+
+	public function updatemahasiswa(){
+		$id_detail_user			   = $this->input->post('id_detail_user');
+		$nama_lengkap          = $this->input->post('nama_lengkap');
+		$nim			       = $this->input->post('nim');
+		$alamat			   	   = $this->input->post('alamat');
+		$tempat_lahir		   = $this->input->post('tempat_lahir');
+		$tanggal_lahir		   = $this->input->post('tanggal_lahir');
+		$jenis_kelamin		   = $this->input->post('jenis_kelamin');
+	
+		$data = array(
+			'nama_lengkap' => $nama_lengkap,
+			'nim' => $nim,
+			'alamat' => $alamat,
+			'tempat_lahir' => $tempat_lahir,
+			'tanggal_lahir' => $tanggal_lahir,
+			'jenis_kelamin' => $jenis_kelamin
+		);
+	
+		$where = array(
+			'id_detail_user' => $id_detail_user
+		);
+	
+		$this->M_akademik->updatemahasiswa($where,$data,'tbl_mahasiswa');
+		$this->load->view('berhasil_ubah_mahasiswa');
+		$this->load->view('mahasiswa');
+	}
+
+	public function hapusmahasiswa($id){
+		$id =    array ('id_detail_user' => $id);
+		$this->M_akademik->hapusmahasiswa($id,'tbl_mahasiswa');
+		redirect(base_url('home/mahasiswa'));
 	}
 
 	public function cetak_kartu($id){

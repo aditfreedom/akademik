@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="<?=base_url()?>/logo.png" type="image/png">
+<link rel="icon" href="<?=base_url()?>/logo.PNG" type="image/png">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Akademik</title>
@@ -30,7 +30,7 @@
   <!-- Google Font: Source Sans Pro -->
   
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.jqueryui.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" >
