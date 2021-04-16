@@ -1,8 +1,8 @@
 <?php
 
 class M_akademik extends CI_Model{
-    public function tampil_data_kuota(){
-        return $this->db->get('kuota');
+    public function tampil_data_dosen(){
+        return $this->db->get('tbl_dosen');
      }
 
      public function tampildatapengguna(){

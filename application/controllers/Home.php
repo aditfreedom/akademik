@@ -34,33 +34,33 @@ class Home extends CI_Controller {
 	{
 		$this->load->model('M_akademik');
 		$sess_data = $this->session->userdata();
-		$data['pensd'] = $this->M_akademik->tampilpensd()->result();
-		$data['pensmp'] = $this->M_akademik->tampilpensmp()->result();
-		$data['pensma'] = $this->M_akademik->tampilpensma()->result();
-		$data['pindsd'] = $this->M_akademik->tampilpindsd()->result();
-		$data['pindsmp'] = $this->M_akademik->tampilpindsmp()->result();
-		$data['pindsma'] = $this->M_akademik->tampilpindsma()->result();
-		$data['hitungsdformulir'] = $this->M_akademik->hitungsdformulir();
-		$data['hitungsmpformulir'] = $this->M_akademik->hitungsmpformulir();
-		$data['hitungsmaformulir'] = $this->M_akademik->hitungsmaformulir();
+		// $data['pensd'] = $this->M_akademik->tampilpensd()->result();
+		// $data['pensmp'] = $this->M_akademik->tampilpensmp()->result();
+		// $data['pensma'] = $this->M_akademik->tampilpensma()->result();
+		// $data['pindsd'] = $this->M_akademik->tampilpindsd()->result();
+		// $data['pindsmp'] = $this->M_akademik->tampilpindsmp()->result();
+		// $data['pindsma'] = $this->M_akademik->tampilpindsma()->result();
+		// $data['hitungsdformulir'] = $this->M_akademik->hitungsdformulir();
+		// $data['hitungsmpformulir'] = $this->M_akademik->hitungsmpformulir();
+		// $data['hitungsmaformulir'] = $this->M_akademik->hitungsmaformulir();
 
-		$data['hitungpindsdformulir'] = $this->M_akademik->hitungpindsdformulir();
-		$data['hitungpindsmpformulir'] = $this->M_akademik->hitungpindsmpformulir();
-		$data['hitungpindsmaformulir'] = $this->M_akademik->hitungpindsmaformulir();
+		// $data['hitungpindsdformulir'] = $this->M_akademik->hitungpindsdformulir();
+		// $data['hitungpindsmpformulir'] = $this->M_akademik->hitungpindsmpformulir();
+		// $data['hitungpindsmaformulir'] = $this->M_akademik->hitungpindsmaformulir();
 
-		$data['hitungpdlulus'] = $this->M_akademik->hitungpdlulus();
-		$data['hitungpdtidaklulus'] = $this->M_akademik->hitungpdtidaklulus();
+		// $data['hitungpdlulus'] = $this->M_akademik->hitungpdlulus();
+		// $data['hitungpdtidaklulus'] = $this->M_akademik->hitungpdtidaklulus();
 
-		$data['hitungpddaftarulang'] = $this->M_akademik->hitungpddaftarulang();
-		$data['hitungpdtidakdaftarulang'] = $this->M_akademik->hitungpdtidakdaftarulang();
+		// $data['hitungpddaftarulang'] = $this->M_akademik->hitungpddaftarulang();
+		// $data['hitungpdtidakdaftarulang'] = $this->M_akademik->hitungpdtidakdaftarulang();
 
-		$data['hitunguser'] = $this->M_akademik->hitunguser();
-		$data['hitungformulir'] = $this->M_akademik->hitungformulir();
-		$data['hitungformulirpindahan'] = $this->M_akademik->hitungformulirpindahan();
+		// $data['hitunguser'] = $this->M_akademik->hitunguser();
+		// $data['hitungformulir'] = $this->M_akademik->hitungformulir();
+		// $data['hitungformulirpindahan'] = $this->M_akademik->hitungformulirpindahan();
 
 		$this->load->view('template/header');
-		$this->load->view('template/sidebar',$sess_data);
-		$this->load->view('dashboard',$data);
+		$this->load->view('template/sidebar');
+		$this->load->view('dashboard');
 		$this->load->view('template/footer');
 
 
@@ -85,13 +85,13 @@ class Home extends CI_Controller {
 	// 	$this->load->view('template/footer');
 	// }
 	
-	public function kuota()
+	public function dosen()
 	{
-		$data['kuota'] = $this->M_akademik->tampil_data_kuota()->result();
+		$data['dosen'] = $this->M_akademik->tampil_data_dosen()->result();
 		$sess_data = $this->session->userdata();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar',$sess_data);
-		$this->load->view('kuota',$data);
+		$this->load->view('dosen',$data);
 		$this->load->view('template/footer');
 	}
 
