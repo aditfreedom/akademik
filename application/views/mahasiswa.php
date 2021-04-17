@@ -21,7 +21,7 @@
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
     <i class="fa fa-plus"></i> Tambah Data</button><br><br></p>
 
-    <table class="table table table-hover" id="example">
+    <table class="table table table-hover table-bordered" id="example">
           <thead class="text-center">
             <tr>
               <th scope="col">NO</th>

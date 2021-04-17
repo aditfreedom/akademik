@@ -20,9 +20,24 @@ class M_akademik extends CI_Model{
         $this->db->insert('tbl_dosen',$data);
     }
 
+    public function tambahletakruangan($data)
+    {
+        $this->db->insert('tbl_letak_ruangan',$data);
+    }
+
+    public function tambahkelas($data)
+    {
+        $this->db->insert('tbl_kelas',$data);
+    }
+
     public function tambahmahasiswa($data)
     {
         $this->db->insert('tbl_mahasiswa',$data);
+    }
+
+    public function tambahmatakuliah($data)
+    {
+        $this->db->insert('tbl_matakuliah',$data);
     }
 
     public function hapusdosen($id)
@@ -35,9 +50,37 @@ class M_akademik extends CI_Model{
         $this->db->delete('tbl_mahasiswa',$id);  
     }
 
+    public function hapuskelas($id)
+    {   
+        $this->db->delete('tbl_kelas',$id);  
+    }
+
+    public function hapusmatakuliah($id)
+    {   
+        $this->db->delete('tbl_matakuliah',$id);  
+    }
+
     public function editdosen($id)
     {
         $query = $this->db->query("SELECT * from tbl_dosen where id_dosen=$id");
+        return $query;    
+    }
+
+    public function editletakruangan($id)
+    {
+        $query = $this->db->query("SELECT * from tbl_letak_ruangan where id_letak_ruangan=$id");
+        return $query;    
+    }
+
+    public function editkelas($id)
+    {
+        $query = $this->db->query("SELECT * from tbl_kelas where id_kelas=$id");
+        return $query;    
+    }
+
+    public function editmatakuliah($id)
+    {
+        $query = $this->db->query("SELECT * from tbl_matakuliah where id_matakuliah=$id");
         return $query;    
     }
 
@@ -52,9 +95,24 @@ class M_akademik extends CI_Model{
         $this->db->update('tbl_dosen',$data); 
     }
 
+    public function updatekelas($where,$data)
+    {   $this->db->where($where);
+        $this->db->update('tbl_kelas',$data); 
+    }
+
+    public function updateletakruangan($where,$data)
+    {   $this->db->where($where);
+        $this->db->update('tbl_letak_ruangan',$data); 
+    }
+
     public function updatemahasiswa($where,$data)
     {   $this->db->where($where);
         $this->db->update('tbl_mahasiswa',$data); 
+    }
+
+    public function updatematakuliah($where,$data)
+    {   $this->db->where($where);
+        $this->db->update('tbl_matakuliah',$data); 
     }
 
     public function updatedatapengguna($where,$data)
@@ -77,13 +135,23 @@ class M_akademik extends CI_Model{
         return $query;
     }
 
+    public function tampil_letakruangan(){
+        $query = $this->db->query("SELECT * from tbl_letak_ruangan");
+        return $query;
+    }
+
+    public function tampil_kelas(){
+        $query = $this->db->query("SELECT * from tbl_kelas");
+        return $query;
+    }
+
     public function tampilinfolulus(){
         $query = $this->db->query("SELECT * from pengguna where approve_lulus = 'Lulus'");
         return $query;
     }
 
-    public function tampil_lulus(){
-        $query = $this->db->query("SELECT * from pengguna where (approve_lulus = 'Antrian' OR approve_lulus = 'Lulus' OR approve_lulus = 'Tidak Lulus') AND approve_formulir = 'Diterima' ");
+    public function tampil_matakuliah(){
+        $query = $this->db->query("SELECT * from tbl_matakuliah");
         return $query;
     }
 

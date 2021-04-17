@@ -109,6 +109,12 @@ class Home extends CI_Controller {
 		redirect(base_url('home/dosen'));
 	}
 
+	public function hapuskelas($id){
+		$id =    array ('id_kelas' => $id);
+		$this->M_akademik->hapuskelas($id,'tbl_kelas');
+		redirect(base_url('home/kelas'));
+	}
+
 	public function editdosen($id){
 		$sess_data = $this->session->userdata();
 		$id_dosen =    array ('id_dosen' => $id);
@@ -119,9 +125,39 @@ class Home extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function editletakruangan($id){
+		$sess_data = $this->session->userdata();
+		$id_mahasiswa =    array ('id_letak_ruangan' => $id);
+		$data['letakruangan'] = $this->M_akademik->editletakruangan($id,'tbl_letak_ruangan')->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('editletakruangan',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function editkelas($id){
+		$sess_data = $this->session->userdata();
+		$id_kelas =    array ('id_kelas' => $id);
+		$data['kelas'] = $this->M_akademik->editkelas($id,'tbl_kelas')->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('editkelas',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function editmatakuliah($id){
+		$sess_data = $this->session->userdata();
+		$id_mk =    array ('id_matakuliah' => $id);
+		$data['datamatakuliah'] = $this->M_akademik->editmatakuliah($id,'tbl_matakuliah')->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('editmatakuliah',$data);
+		$this->load->view('template/footer');
+	}
+
 	public function editmahasiswa($id){
 		$sess_data = $this->session->userdata();
-		$id_dosen =    array ('id_detail_user' => $id);
+		$id_mahasiswa =    array ('id_detail_user' => $id);
 		$data['datamahasiswa'] = $this->M_akademik->editmahasiswa($id,'tbl_mahasiswa')->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
@@ -218,6 +254,83 @@ class Home extends CI_Controller {
 		$id =    array ('id_detail_user' => $id);
 		$this->M_akademik->hapusmahasiswa($id,'tbl_mahasiswa');
 		redirect(base_url('home/mahasiswa'));
+	}
+
+
+	public function tambahmatakuliah(){
+		$nama_matakuliah          = $this->input->post('nama_matakuliah');
+		$keterangan			      = $this->input->post('keterangan');
+		
+	   
+		$data = array(
+			'nama_matakuliah' => $nama_matakuliah,
+			'keterangan' => $keterangan
+		);
+	
+		$this->M_akademik->tambahmatakuliah($data,'tbl_matakuliah');
+		redirect(base_url('home/matakuliah'));
+	}
+
+	public function updatematakuliah(){
+		$id_matakuliah 	       = $this->input->post('id_matakuliah');
+		$nama_matakuliah       = $this->input->post('nama_matakuliah');
+		$keterangan			   = $this->input->post('keterangan');
+
+	
+		$data = array(
+			'nama_matakuliah' => $nama_matakuliah,
+			'keterangan' => $keterangan
+		);
+	
+		$where = array(
+			'id_matakuliah' => $id_matakuliah
+		);
+	
+		$this->M_akademik->updatematakuliah($where,$data,'tbl_dosen');
+		$this->load->view('berhasil_ubah_mk');
+		$this->load->view('matakuliah');
+	}
+
+	public function hapusmatakuliah($id){
+		$id =    array ('id_matakuliah' => $id);
+		$this->M_akademik->hapusmatakuliah($id,'tbl_mahasiswa');
+		redirect(base_url('home/matakuliah'));
+	}
+
+	public function updateletakruangan(){
+		$id_letak_ruangan 	       = $this->input->post('id_letak_ruangan');
+		$nama_letak_ruangan       = $this->input->post('nama_letak_ruangan');
+
+	
+		$data = array(
+			'nama_letak_ruangan' => $nama_letak_ruangan,
+		);
+	
+		$where = array(
+			'id_letak_ruangan' => $id_letak_ruangan
+		);
+	
+		$this->M_akademik->updateletakruangan($where,$data,'tbl_dosen');
+		$this->load->view('berhasil_ubah_lt');
+		$this->load->view('letakruangan');
+	}
+
+	public function updatekelas(){
+		$id_kelas 	       = $this->input->post('id_kelas');
+		$nama_kelas       = $this->input->post('nama_kelas');
+
+	
+		$data = array(
+			'nama_kelas' => $nama_kelas,
+		);
+	
+		$where = array(
+			'id_kelas' => $id_kelas
+		);
+	
+		$this->M_akademik->updatekelas($where,$data,'tbl_kelas');
+		$this->load->view('berhasil_ubah_kl');
+		$this->load->view('kelas');
 	}
 
 	public function cetak_kartu($id){
@@ -331,14 +444,59 @@ class Home extends CI_Controller {
 
 		}
 
-		public function approve_lulus()
+		public function matakuliah()
 	{
-		$data['lulus'] = $this->M_akademik->tampil_lulus()->result();
+		$data['matakuliah'] = $this->M_akademik->tampil_matakuliah()->result();
 		$sess_data = $this->session->userdata();
 		$this->load->view('template/header');
-		$this->load->view('template/sidebar',$sess_data);
-		$this->load->view('approve_lulus',$data);
+		$this->load->view('template/sidebar');
+		$this->load->view('matakuliah',$data);
 		$this->load->view('template/footer');
+	}
+
+	public function letakruangan()
+	{
+		$data['letakruangan'] = $this->M_akademik->tampil_letakruangan()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('letakruangan',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function kelas()
+	{
+		$data['kelas'] = $this->M_akademik->tampil_kelas()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('kelas',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function tambahletakruangan(){
+		$nama_letak_ruangan          = $this->input->post('nama_letak_ruangan');
+		
+	   
+		$data = array(
+			'nama_letak_ruangan' => $nama_letak_ruangan
+		);
+	
+		$this->M_akademik->tambahletakruangan($data,'tbl_letak_ruangan');
+		redirect(base_url('home/letakruangan'));
+	}
+
+
+	public function tambahkelas(){
+		$nama_kelas          = $this->input->post('nama_kelas');
+		
+	   
+		$data = array(
+			'nama_kelas' => $nama_kelas
+		);
+	
+		$this->M_akademik->tambahkelas($data,'tbl_kelas');
+		redirect(base_url('home/kelas'));
 	}
 
 	public function editlulus($id){

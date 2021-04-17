@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a href="<?=base_url('home/approve_lulus');?>" class="nav-link">
+            <a href="<?=base_url('home/matakuliah');?>" class="nav-link">
               <i class="nav-icon fa fa-book-open"></i>
               <p>
                 Mata Kuliah
@@ -72,7 +72,7 @@
           </li>
 
           <li class="nav-item ">
-            <a href="<?=base_url('home/approve_daftarulang');?>" class="nav-link">
+            <a href="<?=base_url('home/kelas');?>" class="nav-link">
               <i class="nav-icon fa fa-door-open"></i>
               <p>
                 Kelas
@@ -81,7 +81,7 @@
           </li>
 
           <li class="nav-item ">
-            <a href="<?=base_url('home/approve_daftarulang');?>" class="nav-link">
+            <a href="<?=base_url('home/letakruangan');?>" class="nav-link">
               <i class="nav-icon fa fa-arrows-alt"></i>
               <p>
                 Letak Ruangan
