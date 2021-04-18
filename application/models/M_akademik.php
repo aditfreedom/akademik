@@ -15,6 +15,11 @@ class M_akademik extends CI_Model{
 
      }
 
+     public function tampil_letak_id(){
+        $result = $this->db->query("SELECT * FROM tbl_ruangan LEFT JOIN tbl_letak_ruangan ON tbl_ruangan.id_letak_ruangan = tbl_letak_ruangan.id_letak_ruangan");
+        return $result;
+     }
+
     public function tambahdosen($data)
     {
         $this->db->insert('tbl_dosen',$data);
@@ -28,6 +33,11 @@ class M_akademik extends CI_Model{
     public function tambahkelas($data)
     {
         $this->db->insert('tbl_kelas',$data);
+    }
+
+    public function tambahruangan($data)
+    {
+        $this->db->insert('tbl_ruangan',$data);
     }
 
     public function tambahmahasiswa($data)
@@ -55,6 +65,11 @@ class M_akademik extends CI_Model{
         $this->db->delete('tbl_kelas',$id);  
     }
 
+    public function hapusruangan($id)
+    {   
+        $this->db->delete('tbl_ruangan',$id);  
+    }
+
     public function hapusmatakuliah($id)
     {   
         $this->db->delete('tbl_matakuliah',$id);  
@@ -63,6 +78,12 @@ class M_akademik extends CI_Model{
     public function editdosen($id)
     {
         $query = $this->db->query("SELECT * from tbl_dosen where id_dosen=$id");
+        return $query;    
+    }
+
+    public function editruangan($id)
+    {
+        $query = $this->db->query("SELECT * FROM tbl_ruangan LEFT JOIN tbl_letak_ruangan ON tbl_ruangan.id_letak_ruangan = tbl_letak_ruangan.id_letak_ruangan WHERE tbl_ruangan.id_ruang=$id");
         return $query;    
     }
 
@@ -98,6 +119,11 @@ class M_akademik extends CI_Model{
     public function updatekelas($where,$data)
     {   $this->db->where($where);
         $this->db->update('tbl_kelas',$data); 
+    }
+
+    public function updateruangan($where,$data)
+    {   $this->db->where($where);
+        $this->db->update('tbl_ruangan',$data); 
     }
 
     public function updateletakruangan($where,$data)

@@ -115,6 +115,12 @@ class Home extends CI_Controller {
 		redirect(base_url('home/kelas'));
 	}
 
+	public function hapusruangan($id){
+		$id =    array ('id_ruang' => $id);
+		$this->M_akademik->hapusruangan($id,'tbl_ruangan');
+		redirect(base_url('home/ruangan'));
+	}
+
 	public function editdosen($id){
 		$sess_data = $this->session->userdata();
 		$id_dosen =    array ('id_dosen' => $id);
@@ -142,6 +148,17 @@ class Home extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('editkelas',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function editruangan($id){
+		$sess_data = $this->session->userdata();
+		$id_ruangan =    array ('id_ruangan' => $id);
+		$data['ruangan2'] = $this->M_akademik->tampil_letakruangan()->result();
+		$data['ruangan'] = $this->M_akademik->editruangan($id,'tbl_ruangan')->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('editruangan',$data);
 		$this->load->view('template/footer');
 	}
 
@@ -333,6 +350,39 @@ class Home extends CI_Controller {
 		$this->load->view('kelas');
 	}
 
+	public function updateruangan(){
+		$id_ruang 	       = $this->input->post('id_ruang');
+		$nama_ruang       = $this->input->post('nama_ruang');
+		$id_letak_ruangan       = $this->input->post('id_letak_ruangan');
+
+
+	
+		$data = array(
+			'nama_ruang' => $nama_ruang,
+			'id_letak_ruangan' => $id_letak_ruangan,
+
+		);
+	
+		$where = array(
+			'id_ruang' => $id_ruang
+		);
+	
+		$this->M_akademik->updateruangan($where,$data,'tbl_ruangan');
+		$this->load->view('berhasil_ubah_rm');
+		$this->load->view('ruangan');
+	}
+
+	public function ruangan()
+	{
+		$data['ruangan2'] = $this->M_akademik->tampil_letakruangan()->result();
+		$data['ruangan'] = $this->M_akademik->tampil_letak_id()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('ruangan',$data);
+		$this->load->view('template/footer');
+	}
+
 	public function cetak_kartu($id){
 		$sess_data = $this->session->userdata();
 		$id =    array ('id' => $id);
@@ -498,6 +548,23 @@ class Home extends CI_Controller {
 		$this->M_akademik->tambahkelas($data,'tbl_kelas');
 		redirect(base_url('home/kelas'));
 	}
+
+	public function tambahruangan(){
+		$nama_ruang          		= $this->input->post('nama_ruang');
+		$id_letak_ruangan          	= $this->input->post('id_letak_ruangan');
+
+		
+	   
+		$data = array(
+			'nama_ruang' => $nama_ruang,
+			'id_letak_ruangan' => $id_letak_ruangan
+
+		);
+	
+		$this->M_akademik->tambahruangan($data,'tbl_ruangan');
+		redirect(base_url('home/ruangan'));
+	}
+
 
 	public function editlulus($id){
 		$sess_data = $this->session->userdata();

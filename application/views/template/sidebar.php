@@ -54,22 +54,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a href="<?=base_url('home/matakuliah');?>" class="nav-link">
-              <i class="nav-icon fa fa-book-open"></i>
-              <p>
-                Mata Kuliah
-              </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a href="<?=base_url('home/approve_daftarulang');?>" class="nav-link">
-              <i class="nav-icon fa fa-building"></i>
-              <p>
-                Ruangan
-              </p>
-            </a>
-          </li>
 
           <li class="nav-item ">
             <a href="<?=base_url('home/kelas');?>" class="nav-link">
@@ -80,6 +64,25 @@
             </a>
           </li>
 
+
+          <li class="nav-item ">
+            <a href="<?=base_url('home/matakuliah');?>" class="nav-link">
+              <i class="nav-icon fa fa-book-open"></i>
+              <p>
+                Mata Kuliah
+              </p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a href="<?=base_url('home/ruangan');?>" class="nav-link">
+              <i class="nav-icon fa fa-building"></i>
+              <p>
+                Ruangan
+              </p>
+            </a>
+          </li>
+
+         
           <li class="nav-item ">
             <a href="<?=base_url('home/letakruangan');?>" class="nav-link">
               <i class="nav-icon fa fa-arrows-alt"></i>
