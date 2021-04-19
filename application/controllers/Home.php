@@ -80,6 +80,21 @@ class Home extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function jadwal_kuliah()
+	{
+		$data['jadwal'] = $this->M_akademik->tampil_jadwal_mk()->result();
+		$data['jadwal2'] = $this->M_akademik->tampil_data_dosen()->result();
+		$data['jadwal3'] = $this->M_akademik->tampil_matakuliah()->result();
+		$data['jadwal4'] = $this->M_akademik->tampil_kelas()->result();
+		$data['jadwal5'] = $this->M_akademik->tampil_letak_id()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('jadwalkuliah',$data);
+		$this->load->view('template/footer');
+	}
+
+
 	public function tambahdosen(){
 		$nama_lengkap          = $this->input->post('nama_lengkap');
 		$nip			       = $this->input->post('nip');
@@ -565,6 +580,30 @@ class Home extends CI_Controller {
 		redirect(base_url('home/ruangan'));
 	}
 
+	public function tambahjadwal(){
+		$waktu_kuliah       = $this->input->post('waktu_kuliah');
+		$hari_kuliah        = $this->input->post('hari_kuliah');
+		$id_matakuliah      = $this->input->post('id_matakuliah');
+		$id_dosen          	= $this->input->post('id_dosen');
+		$id_kelas          	= $this->input->post('id_kelas');
+		$id_ruang          	= $this->input->post('id_ruang');
+
+
+		
+	   
+		$data = array(
+			'waktu_kuliah' => $waktu_kuliah,
+			'hari_kuliah' => $hari_kuliah,
+			'id_matakuliah' => $id_matakuliah,
+			'id_dosen' => $id_dosen,
+			'id_kelas' => $id_kelas,
+			'id_ruang' => $id_ruang,
+		);
+	
+		$this->M_akademik->tambahjadwal($data,'tbl_jadwal_matakuliah');
+		redirect(base_url('home/jadwal_kuliah'));
+	}
+
 
 	public function editlulus($id){
 		$sess_data = $this->session->userdata();
@@ -731,7 +770,7 @@ class Home extends CI_Controller {
 		$data['pengguna'] = $this->M_akademik->tampildatapengguna()->result();
 		$sess_data = $this->session->userdata();
 		$this->load->view('template/header');
-		$this->load->view('template/sidebar',$sess_data);
+		$this->load->view('template/sidebar');
 		$this->load->view('datapengguna',$data);
 		$this->load->view('template/footer');
 	}

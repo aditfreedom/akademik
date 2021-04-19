@@ -69,7 +69,7 @@
 
         <div class="form-group">
         <label for="">Letak Ruangan</label>
-            <select class="form-control" name="id_letak_ruangan">
+            <select class="form-control selectpicker" data-live-search="true" name="id_letak_ruangan">
             <?php foreach ($ruangan2 as $data) : ?>
             <option value="<?php echo $data->id_letak_ruangan;?>"><?php echo $data->nama_letak_ruangan;?></option>
             <?php endforeach ;?>

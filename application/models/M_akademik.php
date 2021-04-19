@@ -6,7 +6,8 @@ class M_akademik extends CI_Model{
      }
 
      public function tampildatapengguna(){
-        return $this->db->query("SELECT * FROM pengguna WHERE NOT role='0' ");
+        return $this->db->query("SELECT * FROM tbl_user LEFT JOIN tbl_mahasiswa ON tbl_user.id_detail_user = tbl_mahasiswa.id_detail_user 
+        LEFT JOIN tbl_dosen ON tbl_user.id_detail_user = tbl_dosen.id_dosen");
      }
 
      public function tampildatapengguna1($username){
@@ -20,9 +21,20 @@ class M_akademik extends CI_Model{
         return $result;
      }
 
+     public function tampil_jadwal_mk(){
+        $result = $this->db->query("SELECT * FROM tbl_jadwal_matakuliah LEFT JOIN tbl_matakuliah ON tbl_jadwal_matakuliah.id_matakuliah = tbl_matakuliah.id_matakuliah LEFT JOIN tbl_dosen ON tbl_jadwal_matakuliah.id_dosen = tbl_dosen.id_dosen
+        LEFT JOIN tbl_kelas ON tbl_jadwal_matakuliah.id_kelas = tbl_kelas.id_kelas LEFT JOIN tbl_ruangan ON tbl_jadwal_matakuliah.id_ruang = tbl_ruangan.id_ruang");
+        return $result;
+     }
+
     public function tambahdosen($data)
     {
         $this->db->insert('tbl_dosen',$data);
+    }
+
+    public function tambahjadwal($data)
+    {
+        $this->db->insert('tbl_jadwal_matakuliah',$data);
     }
 
     public function tambahletakruangan($data)
