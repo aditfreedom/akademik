@@ -27,6 +27,13 @@ class M_akademik extends CI_Model{
         return $result;
      }
 
+
+     public function tampiljadwal_id($id){
+        $result = $this->db->query("SELECT * FROM tbl_jadwal_matakuliah LEFT JOIN tbl_matakuliah ON tbl_jadwal_matakuliah.id_matakuliah = tbl_matakuliah.id_matakuliah LEFT JOIN tbl_dosen ON tbl_jadwal_matakuliah.id_dosen = tbl_dosen.id_dosen
+        LEFT JOIN tbl_kelas ON tbl_jadwal_matakuliah.id_kelas = tbl_kelas.id_kelas LEFT JOIN tbl_ruangan ON tbl_jadwal_matakuliah.id_ruang = tbl_ruangan.id_ruang WHERE tbl_jadwal_matakuliah.id_jadwal_kuliah = $id");
+        return $result;
+     }
+
     public function tambahdosen($data)
     {
         $this->db->insert('tbl_dosen',$data);

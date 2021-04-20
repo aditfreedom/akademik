@@ -100,24 +100,39 @@
               </p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a href="<?=base_url('home/datapengguna');?>" class="nav-link">
+
+         <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-database"></i>
               <p>
                 Data Pengguna
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('home/datapengguna');?>" class="nav-link">
+                  <i class="far far fa-circle"></i>
+                  <p>Dosen</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('home/datapenggunamahasiswa');?>" class="nav-link">
+                  <i class="far fa-circle"></i>
+                  <p>Mahasiswa</p>
+                </a>
+              </li>
+              </ul>
+              </li>       
 
           <li class="nav-item">
-            <a href="<?= base_url('home/logout')?>" class="nav-link bg-danger">
+            <a href="<?= base_url('user/logout')?>" class="nav-link bg-danger">
               <i class="nav-icon fa fa-sign-out-alt"></i>
               <p>
                 Logout
               </p>
             </a>
           </li>
-
          
 
 

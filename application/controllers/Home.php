@@ -156,6 +156,20 @@ class Home extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+		public function editjadwal($id){
+		$sess_data = $this->session->userdata();
+		$id_mahasiswa =    array ('id_jadwal_kuliah' => $id);
+		$data['jadwal'] = $this->M_akademik->tampiljadwal_id($id,'tbl_jadwal_matakuliah')->result();
+		$data['jadwal2'] = $this->M_akademik->tampil_data_dosen()->result();
+		$data['jadwal3'] = $this->M_akademik->tampil_matakuliah()->result();
+		$data['jadwal4'] = $this->M_akademik->tampil_kelas()->result();
+		$data['jadwal5'] = $this->M_akademik->tampil_letak_id()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('editjadwal',$data);
+		$this->load->view('template/footer');
+	}
+
 	public function editkelas($id){
 		$sess_data = $this->session->userdata();
 		$id_kelas =    array ('id_kelas' => $id);
@@ -614,6 +628,8 @@ class Home extends CI_Controller {
 		$this->load->view('editlulus',$data);
 		$this->load->view('template/footer');
 	}
+
+
 
 	public function updatelulus(){
 		$id                = $this->input->post('id');

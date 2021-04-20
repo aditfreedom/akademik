@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
         <label for="">Alamat</label><br>
-        <textarea name="alamat" id="" rows="2" style="width:100%;"><?php echo $data->alamat;?></textarea>
+        <textarea name="alamat" id="" class="form-control" rows="2" style="width:100%;"><?php echo $data->alamat;?></textarea>
         </div>
         <div class="form-group">
         <label for="">Tempat Lahir</label>
