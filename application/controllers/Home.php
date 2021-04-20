@@ -725,61 +725,6 @@ class Home extends CI_Controller {
 		$this->load->view('approve_daftarulang',$data);
 		$this->load->view('template/footer');
 	}
-
-	public function editdaftarulang($id){
-		$sess_data = $this->session->userdata();
-		$id =    array ('id' => $id);
-		$data['daftarulang'] = $this->M_akademik->editdaftarulang($id,'daftarulang')->result();
-		$data2['approval_daftarulang'] = $this->M_akademik->tampilpengguna($id,'pengguna')->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar',$sess_data);
-		$this->load->view('editdaftarulang',$data);
-		$this->load->view('konfirm_daftarulang',$data2);
-		$this->load->view('template/footer');
-	}
-
-	public function updatedaftarulang(){
-		$id              = $this->input->post('id');
-		$nama            = $this->input->post('nama');
-		$jenis      	 = $this->input->post('jenis');
-		$nisn	         = $this->input->post('nisn');
-		$alamat	         = $this->input->post('alamat');
-		$sekolah_asal    = $this->input->post('sekolah_asal');
-		$no_hp           = $this->input->post('no_hp');
-		$foto            = $this->input->post('foto');
-		$bukti_tf        = $this->input->post('bukti_tf');
-		$username        = $this->input->post('username');
-		$password        = $this->input->post('password');
-		$role            = $this->input->post('role');
-		$approve_formulir    = $this->input->post('approve_formulir');
-		$approve_lulus       = $this->input->post('approve_lulus');
-		$approve_daftarulang = $this->input->post('approve_daftarulang');
-
-
-	
-		$data = array(
-			'nama_lengkap' => $nama,
-			'jenis' => $jenis,
-			'nisn' => $nisn,
-			'alamat' =>$alamat,
-			'sekolah_asal' => $sekolah_asal,
-			'no_hp' => $no_hp,
-			'foto' => $foto,
-			'bukti_tf' => $bukti_tf,
-			'username' => $username,
-			'password' => $password,
-			'role' => $role,
-			'approve_formulir' => $approve_formulir,
-			'approve_lulus' => $approve_lulus,
-			'approve_daftarulang' => $approve_daftarulang
-		);
-	
-		$where = array(
-			'id' => $id
-		);
-		$this->M_akademik->updatedaftarulang($where,$data,'pengguna');
-		$this->load->view('berhasil_ubah_daftarulang');
-		$this->load->view('approve_daftarulang');	}
 	
 		public function datapengguna()
 	{

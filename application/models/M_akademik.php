@@ -7,7 +7,7 @@ class M_akademik extends CI_Model{
 
      public function tampildatapengguna(){
         return $this->db->query("SELECT * FROM tbl_user LEFT JOIN tbl_mahasiswa ON tbl_user.id_detail_user = tbl_mahasiswa.id_detail_user 
-        LEFT JOIN tbl_dosen ON tbl_user.id_detail_user = tbl_dosen.id_dosen");
+        LEFT JOIN tbl_dosen ON tbl_user.id_detail_user = tbl_dosen.id_dosen WHERE level=1");
      }
 
      public function tampildatapengguna1($username){
